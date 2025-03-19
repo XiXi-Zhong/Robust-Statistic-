@@ -1,0 +1,23 @@
+---
+title: "Robust statistic tutorial 1"
+author: "XIXI"
+date: "2025-03-19"
+output: html_document
+---
+#1. The dataset comprises 26 measurements of hardness, often used to illustrate robust statistical methods.
+#570, 565, 575, 580, 590, 600, 610, 620, 625, 630, 635, 640, 645, 650,
+#660, 665, 670, 675, 680, 690, 700, 710, 720, 730, 740, 750
+
+#(a) Compute descriptive statistics for this dataset: mean, median, standard deviation, fourth spread and MAD.
+#(b) Compute the standard and robust confidence intervals for this dataset.
+#(c) Using visual representation, depict the distribution of hardness measurements and highlight the presence of outliers.
+#(d) Comment on your findings.
+
+```{r}
+data_1 <- c(570, 565, 575, 580, 590, 600, 610, 620, 625, 630, 635, 640, 645, 650,660, 665, 670, 675, 680, 690, 700, 710, 720, 730, 740, 750)
+#这几个descriptive statistics有什么不同？分别用在哪些场所 
+a_mean <- mean(data_1)
+a_median <- median(data_1)
+
+```
+
