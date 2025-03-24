@@ -1,0 +1,37 @@
+---
+title: "Tutorial 2"
+author: "XIXI"
+date: "2025-04-16"
+output: html_document
+---
+#A financial analyst is evaluating a portfolio’s average daily return over a month (30 trading days).
+#The daily returns (in percentage, ages) are:
+#a) Compute the mean and median of the daily returns.
+#b) Compute the 20% trimmed mean.
+
+```{r}
+d_r<-c(-0.5,0.2,0.3,1.2,0.8,-1.0,0.5,0.4,0.6,-0.3,0.7,1.5,0.9,-3.0,2.1,-0.2,0.5,0.4,0.6,-0.4,0.2,1.1,-0.8,3.5,-2.5,2.0,0.9,1.0,1.3,-5.0)
+d_mean <- mean(d_r)
+#20% trimmed mean
+d_trimmed <- mean(d_r,trim = 0.2)
+d_media <- median(d_r)
+d_mean
+d_trimmed
+d_media
+```
+##c) Discuss Why the Trimmed Mean Might Be a Better Estimate for Expected Portfolio Returns
+#Answer: The trimmed mean is often preferred over the standard mean in financial analysis for several reasons:
+#1.Reduction of Outlier Impact:
+#Financial data, such as daily returns, can have extreme outliers (e.g., large losses or gains due to market events).
+#The standard mean is sensitive to these outliers, which can distort the estimate of expected returns.
+#By trimming a portion of the data from both tails, the trimmed mean reduces the influence of these outliers, providing a more accurate central tendency measure.
+#2.Improved Robustness:
+#The trimmed mean is a robust statistic, meaning it's less affected by extreme values or skewed distributions.
+#This robustness leads to more reliable performance estimates, especially in volatile markets.
+#3.Better Representation of Typical Performance:
+#Investors are often more interested in the typical performance of a portfolio rather than being heavily influenced by rare, extreme events.
+#The trimmed mean focuses on the central portion of the returns, offering a clearer picture of expected performance under normal market conditions.
+#4.Enhanced Risk Management:
+#By mitigating the impact of outliers, the trimmed mean helps in better risk assessment and portfolio management decisions.
+#It ensures that the expected return estimates are not overly optimistic or pessimistic due to extreme observations.
+
