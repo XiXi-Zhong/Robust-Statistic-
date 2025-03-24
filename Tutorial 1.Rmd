@@ -9,15 +9,88 @@ output: html_document
 #660, 665, 670, 675, 680, 690, 700, 710, 720, 730, 740, 750
 
 #(a) Compute descriptive statistics for this dataset: mean, median, standard deviation, fourth spread and MAD.
-#(b) Compute the standard and robust confidence intervals for this dataset.
-#(c) Using visual representation, depict the distribution of hardness measurements and highlight the presence of outliers.
-#(d) Comment on your findings.
 
 ```{r}
 data_1 <- c(570, 565, 575, 580, 590, 600, 610, 620, 625, 630, 635, 640, 645, 650,660, 665, 670, 675, 680, 690, 700, 710, 720, 730, 740, 750)
 #这几个descriptive statistics有什么不同？分别用在哪些场所 
 a_mean <- mean(data_1)
 a_median <- median(data_1)
+a_sd <- sd(data_1)
+a_iqr <- IQR(data_1)
+a_mad <- mad(data_1)
+a_mean
+a_median
+a_sd
+a_iqr
+a_mad
+```
+#(b) Compute the standard and robust confidence intervals for this dataset.(计算数据的标准和稳健置信区间)
+```{r}
+#标准置信区间
+t.test(data_1)$conf.int
+#稳健置信区间
+
 
 ```
+
+#(c) Using visual representation, depict the distribution of hardness measurements and highlight the presence of outliers.
+```{r}
+
+  boxplot(data_1, col = "lightgray", main = "Boxplot of Hardness Measurements",
+        ylab = "Hardness", horizontal = FALSE)
+x <- boxplot.stats(data_1)$out
+#结果是“numeric(0)”表示没有异常值
+
+#做密度图
+library(ggplot2)
+
+# 创建数据框
+df <- data.frame(data_1)
+# 绘制直方图加密度图
+ggplot(df, aes(x = data_1)) +
+  geom_histogram(aes(y = ..density..), bins = 10, fill = "lightblue", color = "black", alpha = 0.7) +  # 直方图
+  geom_density(color = "red", lwd = 1.2) +  # 密度曲线
+  labs(title = "Histogram & Density Plot of Hardness Measurements",
+       x = "Hardness", y = "Density") +
+  theme_minimal()
+
+
+
+```
+
+#(d) Comment on your findings.
+
+#2. The following data were generated from a Uniform distribution, U(0,1):
+#0.10 0.15 0.20 0.35 0.45 0.55 0.65 0.75 0.85 0.95
+#Calculate the following
+#• Sample mean
+#• Sample median
+#• 10% trimmed mean
+```{r}
+d_2<- c(0.10,0.15,0.20, 0.35, 0.45, 0.55 ,0.65 ,0.75 ,0.85, 0.95)
+mean_2 <- mean(d_2)
+med_2 <- median(d_2)
+trim_2 <- mean(d_2,trim=0.1)
+mean_2
+med_2
+trim_2
+```
+## 0.5,0.5,0.49
+
+#Now, replace the largest value from the dataset with 5.0:
+#Recalculate the new sample mean, median and the 10% trimmed mean.
+#Interpret your findings.
+```{r}
+d_3<- c(0.10,0.15,0.20, 0.35, 0.45, 0.55 ,0.65 ,0.75 ,0.85, 5)
+mean_3 <- mean(d_3)
+med_3 <- median(d_3)
+trim_3 <- mean(d_3,trim=0.1)
+mean_3
+med_3
+trim_3
+```
+
+#0.905,0.5,0.49375
+##发现：我发现一组数据（0.10,0.15,0.20, 0.35, 0.45, 0.55 ,0.65 ,0.75 ,0.85, 0.95）求这三个值时，均值，中位数，截尾均值三个数值是差不多的都在0.5左右，因为这组数据比较平均，没有异常值。然后把这组数据的最大值改为5，均值mean升高到0.95，中位数还是0.5，截尾均值也没有变化，一样是0.49375，说明中位数和截尾均值比较稳健，不受outlier值影响，但是mean只适合平稳的一组数值，受异常值影响大。
+
 
