@@ -33,5 +33,5 @@ d_media
 #The trimmed mean focuses on the central portion of the returns, offering a clearer picture of expected performance under normal market conditions.
 #4.Enhanced Risk Management:
 #By mitigating the impact of outliers, the trimmed mean helps in better risk assessment and portfolio management decisions.
-#It ensures that the expected return estimates are not overly optimistic or pessimistic due to extreme observations.
+#It ensures that the expected return estimates are not overly optimistic or pessimistic due to extreme observations. 。
 
