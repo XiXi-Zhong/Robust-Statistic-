@@ -1,0 +1,40 @@
+---
+title: "consultant report 2"
+author: "Zhong Yaxi"
+date: "2025-05-14"
+output: html_document
+---
+
+```{r}
+scores <- read.csv("C:/Users/yaxiz/Desktop/Semester 2/statistic consulting/scores.txt",header=TRUE,sep = "\t")
+head(scores)
+#1.calculate total scores
+total_score <- rowSums(scores[ , 2:15])
+total_score
+#2.stability scores
+SD<-apply(scores[,2:15],1,sd)
+SD
+max_SD <- max(SD)
+Stability_Score <- 1 - (SD/ max_SD)
+Stability_Score
+
+#3 Excellence Score（numer of scores >=80）
+ExcellenceScore <- apply(scores[,2:15], 1, function(x) sum(x >=80))
+ExcellenceScore
+# Final Score 
+FinalScore <- 0.5 * total_score + 
+                   0.3*Stability_Score + 
+                   0.2*ExcellenceScore
+FinalScore
+#  students ID and corresponding grades
+student_id <- 1:10
+sorted_indices <- order(FinalScore, decreasing = TRUE)
+sorted_students <- student_id[sorted_indices]
+sorted_scores <- FinalScore[sorted_indices]
+
+sorted_results <- data.frame(Student = sorted_students, Score = sorted_scores)
+print(sorted_results)
+
+
+```
+
