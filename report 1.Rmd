@@ -1,0 +1,54 @@
+---
+title: "borrowing cost"
+author: "Zhong Yaxi"
+date: "2025-05-17"
+output: html_document
+---
+
+```{r}
+# borrow times
+borrow_times <- 1:16
+
+# crrosponding frequence
+freq <- c(63526, 25653, 11855, 6055, 3264, 1727,
+          931, 497, 275, 124, 68, 28,
+          13, 6, 9, 4)
+
+# plot diagram
+barplot(freq, names.arg = borrow_times,
+        xlab = "Borrow times",
+        ylab = "Number of Users",
+        main = "Histogram of Borrowing Frequency",
+        col = "skyblue")
+
+```
+
+#2
+```{r}
+#vector
+user_borrow_vector <- rep(borrow_times, freq)
+install.packages("fitdistrplus")
+library(fitdistrplus)
+
+# 拟合负二项分布
+fit_nb <- fitdist(user_borrow_vector, "nbinom")
+summary(fit_nb)
+plot(fit_nb)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```
+
